@@ -1,6 +1,6 @@
 ### 链表
-```python
 Definition for singly-linked list.
+```python
 class ListNode:
     def __init__(self, x):
         self.val = x
