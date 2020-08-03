@@ -1,4 +1,4 @@
-#### 给定一个二叉树，检查它是否是镜像对称的。Refer to [leetcode 110](https://leetcode-cn.com/problems/balanced-binary-tree/)
+#### 给定一个二叉树，检查它是否是镜像对称的。Refer to [leetcode 101](https://leetcode-cn.com/problems/symmetric-tree/)
 1. 递归法
 ```python
 class Solution:
