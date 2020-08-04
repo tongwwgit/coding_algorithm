@@ -1,4 +1,4 @@
-#### 一个n个元素的数组，找出最小的k个数
+#### 一个n个元素的数组，找出最小的k个数。 与[快速获取数组中点的相邻k个点的值](https://github.com/WenwenTong/coding_algorithm/blob/master/数据结构/数组和字符串/快速获取数组中点的相邻k个点的值.md)最大堆解法类似
 1. 时间复杂度O(n), 会修改原始数组，利用partition函数的性质。
 ```python
 def partition(arr,start,end): 
