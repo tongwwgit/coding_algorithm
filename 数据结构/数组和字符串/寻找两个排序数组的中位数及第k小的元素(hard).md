@@ -23,7 +23,7 @@ class Solution:
 * 中位数条件：
     * 若总数为偶数：i+j=m-i+n-j 
     * 若总数为奇数，i+j= m-i+n-j+1
-    * 统一表示为 j=(m+n+1)//2, 奇数的话左半边比右半边多一个数
+    * 统一表示为 j=(m+n+1)//2-i,  奇数的话左半边比右半边多一个数
 * 满足的条件 ：A[i-1]<B[j] and A[i]>B[j-1]。 可通过二分查找找到满足要求的i和j
 ```python
 class Solution:
@@ -51,3 +51,41 @@ class Solution:
         return maxofleft if (m+n)%2==1 else (maxofleft+minofright)/2
 ```
     
+#### 给定两个排序数组，查找其合并后的第k小的元素，复杂度为logk，使用二分查找法
+* 将两个数组分别以i,j为中心进行分割如下所示
+    * A:左边i个元素，右边(m-i)个元素: 0,1,..,i-1 | i,i+1,m-1
+    * B:左边j个元素，右边(n-j)个元素: 0,1,..,j-1 | j,j+1,n-1
+* 满足的条件 ：A[i-1]<B[j] and A[i]>B[j-1] 且i+j=k
+* 最后输出的结果为 max(A[i-1],B[j-1])
+```python
+def findksmall(nums1,nums2,k):
+    m,n=len(nums1),len(nums2)
+    if m>n:
+        m,n,nums1,nums2=n,m,nums2,nums1
+    left,right=0,m
+    if k<m:
+        right=k
+    while left<=right:
+        i=(left+right)//2
+        j=k-i
+        if j>n: j=n  #j可能会越界
+        if i>0 and 0<=j<n and nums1[i-1]>nums2[j]:
+            right=i-1
+        elif i<m and 1<=j<=n and nums1[i]<nums2[j-1]:
+            left=i+1
+        else:
+            break
+        
+    left1=nums1[i-1] if i>0 else float('-inf')
+    left2=nums2[j-1] if j>0 else float('-inf')
+    return max(left1,left2)
+
+
+arra=[1,3,5,7,9,]
+arrb=[2,4,6,8,10]
+k=10
+arr=arra+arrb
+arr.sort()
+print(arr[k-1])
+print(findksmall(arra,arrb,k))
+```
