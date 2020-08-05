@@ -34,7 +34,7 @@ class Solution:
         left,right=0,m     #查找i的范围
         while left<=right: 
             i=(left+right)//2
-            j=(m+n+1)//2-i
+            j=(m+n+1)//2-i  #j不会越界
             if i>0 and nums1[i-1]>nums2[j]:
                 right=i-1
             elif i<m and nums2[j-1]>nums1[i]:
