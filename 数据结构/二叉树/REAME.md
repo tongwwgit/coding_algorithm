@@ -15,3 +15,8 @@ class TreeNode:
 * 堆中父节点和子节点下标关系
     * 若根节点下标从1开始，对于父节点i,其左右节点的下标是2i, 2i+1
     * 若根节点下标从0开始，对于父节点i,其左右节点的下标是2i+1, 2i+2
+* 最大堆的应用
+    * [快速获取数组中点的相邻k个点的值](https://github.com/WenwenTong/coding_algorithm/blob/master/数据结构/数组和字符串/快速获取数组中点的相邻k个点的值.md)
+    * [数组中最小的k个数](https://github.com/WenwenTong/coding_algorithm/blob/master/数据结构/数组和字符串/数组中最小的k个数.md)
+    * [堆排序](https://github.com/WenwenTong/coding_algorithm/blob/master/算法/排序和查找算法/经典排序算法.md)
+
