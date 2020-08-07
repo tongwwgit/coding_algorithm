@@ -36,3 +36,48 @@ class Solution:
             l2.next=self.mergeTwoLists(l1,l2.next)
             return l2
 ```
+
+#### 合并k个排序链表： 归并排序，对left和right使用合并两个排序链表的方法， 时间复杂度O(nlogk)
+```python
+class Solution:
+    def mergeKLists(self, lists: List[ListNode]) -> ListNode:
+        if not lists:
+            return None
+        if len(lists)==1:
+            return lists[0]
+
+        mid=len(lists)//2
+        left=self.mergeKLists(lists[:mid])
+        right=self.mergeKLists(lists[mid:])
+        
+        res=p=ListNode(0)
+        while left and right:
+            if left.val<right.val:
+                p.next=left
+                left=left.next
+            else:
+                p.next=right
+                right=right.next
+            p=p.next
+        p.next=left or right
+        return res.next
+```
+暴力法：取出所有的元素O(nlogn)排序好后再重新创建链表
+```python
+class Solution:
+    def mergeKLists(self, lists: List[ListNode]) -> ListNode:
+        if not lists:
+            return None
+        if len(lists)==1:
+            return lists[0]
+        lst=[]
+        for item in lists:
+            while item:
+                lst.append(item.val)
+                item=item.next
+        p=res=ListNode(0)
+        for i in sorted(lst):
+            p.next=ListNode(i)
+            p=p.next
+        return res.next
+```
