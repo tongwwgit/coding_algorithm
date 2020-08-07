@@ -50,6 +50,7 @@ class Solution:
         left=self.mergeKLists(lists[:mid])
         right=self.mergeKLists(lists[mid:])
         
+        ##对left和right进行合并
         res=p=ListNode(0)
         while left and right:
             if left.val<right.val:
