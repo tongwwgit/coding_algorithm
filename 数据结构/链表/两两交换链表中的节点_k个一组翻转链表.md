@@ -99,7 +99,7 @@ class Solution:
                 p.next=head
                 break
             else:
-                while stack:
+                while stack: #利用栈来翻转链表更加简洁
                     p.next=stack.pop()
                     p=p.next
                 head=cur
