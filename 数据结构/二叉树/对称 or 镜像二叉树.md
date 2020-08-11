@@ -40,3 +40,30 @@ class Solution:
             
         return True
 ```
+
+#### 二叉树的镜像构造：请完成一个函数，输入一个二叉树，该函数输出它的镜像。Refer to [leetcode 27](https://leetcode-cn.com/problems/er-cha-shu-de-jing-xiang-lcof/)
+1. 递归交换左右节点
+```python
+class Solution:
+    def mirrorTree(self, root: TreeNode) -> TreeNode:
+        if not root:
+            return None
+        root.left,root.right=self.mirrorTree(root.right),self.mirrorTree(root.left)
+        return root
+```
+2. 利用栈（或队列）遍历树的所有节点 node ，并交换每个 node 的左 / 右子节点。
+```python
+class Solution:
+    def mirrorTree(self, root: TreeNode) -> TreeNode:
+        if not root:
+            return None
+        stack=[root]
+        while stack:
+            node=stack.pop()
+            if node.left:
+                stack.append(node.left)
+            if node.right:
+                stack.append(node.right)
+            node.left,node.right=node.right,node.left
+        return root
+```
