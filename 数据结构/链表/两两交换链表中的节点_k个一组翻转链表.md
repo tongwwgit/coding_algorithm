@@ -45,7 +45,7 @@ class Solution:
                 return head
         #此时p是第k+1个节点
         p=self.reverseKGroup(p,k)
-        for i in range(k):  #依次从头部拿一个节点与后面的连接
+        for i in range(k):  #依次从头部拿一个节点与后面的连接,或者先翻转前k个后再进行拼接
             temp=head.next
             head.next=p
             p=head
