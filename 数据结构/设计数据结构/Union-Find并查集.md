@@ -1,1 +1,44 @@
-#### Union-Find 算法，也就是常说的并查集算法，主要是解决图论中「动态连通性」问题，是一种数据结构，解决一些元素分组的问题
+#### Union-Find 算法，也就是常说的并查集算法，主要是解决图论中「动态连通性」问题，是一种数据结构，解决一些元素分组的问题，主要包含合并和查询，并查集的重要思想在于，用集合中的一个元素代表集合。可以把集合比喻成帮派，而代表元素则是帮主。[Union-Find简介](https://zhuanlan.zhihu.com/p/93647900/)
+##### 合并（Union）：把两个不相交的集合合并为一个集合。可以用树来表示连通性，让其中的（任意）一个节点的根节点接到另一个节点的根节点上
+##### 查询（Find）：查询两个元素是否在同一个集合中。即判断是否有共同的根节点
+
+#### 基本算法如下：
+```c++
+public void union(int p, int q) {
+    int rootP = find(p);
+    int rootQ = find(q);
+    if (rootP == rootQ)
+        return;
+    // 将两棵树合并为一棵
+    parent[rootP] = rootQ;
+    // parent[rootQ] = rootP 也一样
+    count--; // 两个分量合二为一
+}
+
+/* 返回某个节点 x 的根节点 */
+private int find(int x) {
+    // 根节点的 parent[x] == x
+    while (parent[x] != x)
+        x = parent[x];
+    return x;
+}
+
+/* 返回当前的连通分量个数 */
+public int count() { 
+    return count;
+}
+
+public boolean connected(int p, int q) {
+    int rootP = find(p);
+    int rootQ = find(q);
+    return rootP == rootQ;
+}
+```
+#### 改进：
+1. 路径压缩，改进查询根节点的效率
+```python
+int find(int x)
+{
+    return x == fa[x] ? x : (fa[x] = find(fa[x]));
+}
+```
