@@ -12,7 +12,10 @@
      
      def put(self, key: int, value: int) -> None:
 ```
-### 解法：核心数据结构就是哈希链表，双向链表和哈希表的结合体。哈希表可以保证查找，链表用来插入删除
+### 解法：核心数据结构就是哈希链表，双向链表和哈希表的结合体。哈希表可以保证查找，链表用来插入删除.
+* 哈希表： key： node
+* 双向链表操作对象是node： 
+* cache操作对象是key和vlaue
 #### 1. 构造ListNode和Doublelist对象，代码过于复杂
 ```python
 class ListNode:  #需要pre和next节点，便于插入和删除
@@ -200,4 +203,70 @@ class LRUCache:
             new.next = self.tail
             self.tail.prev.next = new
             self.tail.prev = new
+```
+#### 4. 构造ListNode和Doublelist对象，简化了1的代码
+```python
+class ListNode:
+    def __init__(self, key=None, value= None):
+        self.key = key
+        self.value = value
+        self.pre = None
+        self.next = None
+
+class DoubleList: #双向链表
+    def __init__(self):
+        self.head = ListNode()
+        self.tail = ListNode()
+        self.head.next = self.tail
+        self.tail.pre  = self.head
+        self.size = 0
+    
+    def insert(self, node):
+        node.next = self.tail
+        node.pre = self.tail.pre
+        node.pre.next = node
+        node.next.pre = node
+        self.size = self.size+1
+    
+    def remove(self, node=None): 
+        self.size = self.size -1
+        if node: #给定node参数，删除某个node
+            node.pre.next = node.next
+            node.next.pre = node.pre
+        else:    #容量满了, 要求删除第一个node
+            node = self.head.next
+            self.head.next = node.next
+            node.next.pre = self.head
+        return node
+
+                
+class LRUCache():
+    def __init__(self, capacity: int):
+        self.capacity = capacity
+        self.cache = DoubleList()
+        self.hashmap = {}
+       
+
+    def get(self, key: int) -> int:
+        if key in self.hashmap:
+            node = self.hashmap[key]
+            self.cache.remove(node)
+            self.cache.insert(node)
+            return node.value
+        else:
+            return -1
+
+    def put(self, key: int, value: int) -> None:
+        if key in self.hashmap:
+            node = self.hashmap[key]
+            node.value = value
+            self.cache.remove(node)
+            self.cache.insert(node)
+        else:
+            if len(self.hashmap)==self.capacity:
+                node = self.cache.remove()
+                self.hashmap.pop(node.key)
+            node = ListNode(key, value)
+            self.cache.insert(node)
+            self.hashmap[key] = node
 ```
