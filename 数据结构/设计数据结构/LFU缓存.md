@@ -1,4 +1,4 @@
-#### LFU(least frequently used, 最不经常使用)淘汰访问频次最低的数据，如果访问频次最低的数据有多条，需要淘汰最旧的数据。[leetcode](https://leetcode-cn.com/problems/lfu-cache/)
+#### LFU(least frequently used, 最不经常使用)淘汰访问频次最低的数据，如果访问频次最低的数据有多条，需要淘汰最旧的数据。[leetcode 460](https://leetcode-cn.com/problems/lfu-cache/)
 实现 LFUCache 类：
 
 * LFUCache(int capacity) - 用数据结构的容量 capacity 初始化对象
