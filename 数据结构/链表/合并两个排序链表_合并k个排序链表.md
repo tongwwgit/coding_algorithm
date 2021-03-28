@@ -1,4 +1,4 @@
-#### 合并两个有序链表：将两个升序链表合并为一个新的 升序 链表并返回。新链表是通过拼接给定的两个链表的所有节点组成的。 
+#### 合并两个有序链表：将两个升序链表合并为一个新的 升序 链表并返回。新链表是通过拼接给定的两个链表的所有节点组成的。 [leetcode 21](https://leetcode-cn.com/problems/merge-two-sorted-lists/)
 * 输入：1->2->4, 1->3->4
 * 输出：1->1->2->3->4->4
 1. 迭代法
@@ -37,7 +37,7 @@ class Solution:
             return l2
 ```
 
-#### 合并k个排序链表： 归并排序，对left和right使用合并两个排序链表的方法， 时间复杂度O(nlogk)
+#### 合并k个排序链表： 归并排序，对left和right使用合并两个排序链表的方法， 时间复杂度O(nlogk) [leetcode 23](https://leetcode-cn.com/problems/merge-k-sorted-lists/)
 ```python
 class Solution:
     def mergeKLists(self, lists: List[ListNode]) -> ListNode:
